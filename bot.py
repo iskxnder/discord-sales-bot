@@ -7,6 +7,8 @@ from discord.ext import commands
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")  # <-- lee el token desde variable de entorno  
 TARGET_BOT_ID = 1194084819915771924  
 # -----------------------------
+if TOKEN is None:
+    raise RuntimeError("DISCORD_BOT_TOKEN no está definida en las variables de entorno.")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -82,3 +84,4 @@ async def on_message(message: discord.Message):
     await message.channel.send(respuesta)
 
 bot.run(TOKEN)
+
